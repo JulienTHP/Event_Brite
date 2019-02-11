@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
 	belongs_to :admin, class_name: 'User'
 
-	has_many :attendances
+	has_many :attendances, dependent: :destroy
 	has_many :users, through: :attendances, foreign_key: 'user_id'
 	validates :start_date, presence: true, unless: :is_past?
 	validates :duration, presence: true, numericality:{greater_than: 0}, if: :is_multiple_of_5?
