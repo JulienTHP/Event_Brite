@@ -1,14 +1,10 @@
 class AttendanceMailer < ApplicationMailer
-	default from: 'no-reply@monsite.fr'
+  default from: 'no-reply@vive-rspec.fr'
+ 
+  def new_attendance(event)
+    @event = event 
+    @url  = 'http://amortlestests.fr/login' 
 
-	def confirmation_email(admin_id)
-		@admin = admin_id
-
-
-		@url = 'http://monsite.fr/login'
-
-		mail(to: @admin, subject: 'Participation enregistrée!')
-	end
+    mail(to: @event.admin.email, subject: 'Il y a un nouvel inscrit') 
+  end
 end
-
-

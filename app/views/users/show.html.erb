@@ -1,0 +1,62 @@
+<% provide(:title, 'My profile') %>
+
+<div class="container text-center">    
+    <div class="col-sm-12">
+<!-- -------------------------Encadre haut ------------------------------- -->
+
+<!-- ---------------------------------------- second ----------------------- -->
+      <div class="row mr-auto">
+            <div class="well">              
+              <div class="col-sm-6">
+                <h2 class="h3 mb-3 font-weight-normal text-center">Mon profile</h2><br><hr class="my-0">
+                <hr class="my-0"><br>
+                <p>Nom complet : <%= current_user.first_name %>
+                <% unless current_user.last_name.blank? %>
+                  <%= current_user.last_name.upcase %></p>
+                <% end %>
+                <hr class="my-0">
+                <hr class="my-0"><br>
+                <p><%= current_user.email %></p>
+                <hr class="my-0">
+                <hr class="my-0"><br>
+                <p><%= current_user.description  %></p>
+              </div>
+              <div class="col-sm-6">
+                      <%= image_tag("bird.jpg", alt: "Avatar", class: "img-circle") %>
+                    </div>
+              <div class="col-sm-12">
+              <hr class="my-0">
+              <hr class="my-0"><br>
+              <div class='d-flex justify-content-between align-items-center'>
+                <div><%= link_to "Editer infos", edit_user_path(current_user.id), class:"m-1 btn btn-primary btn-md" %></div>
+                <div><%= link_to "Editer infos de connexion", edit_user_registration_path, class:"btn btn-primary btn-md" %></div>
+              </div><br>
+              <hr class="my-0">
+              <hr class="my-0"><br>
+              <h2 class="h3 mb-3 font-weight-normal text-center">Mes events</h2>
+              <div class="card-group d-flex justify-content-center">
+                <% current_user.events.each do |event| %>
+                  <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header"><%= event.title  %></div>
+                    <div class="card-body text-secondary">
+                         <%= link_to "Voir event", event_path(event.id), class:"btn btn-primary" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>               
+
+              <hr class="my-0">
+              <hr class="my-0"><br>
+              <span class='d-flex justify-content-end'>
+              <%= image_tag("facebook.png", alt: "Facebook") %>
+              <%= image_tag("favicon.jpg", alt: "Facebook") %>
+              <%= image_tag("twitter.png", alt: "twitter") %>
+              <%= image_tag("flickr.png", alt: "Flickr") %>
+              <%= image_tag("vimeo.png", alt: "Vimeo") %>
+              <%= image_tag("rss.png", alt: "rss") %>
+              </span>
+             </div>
+          </div>
+    </div>
+  </div>
+</div>

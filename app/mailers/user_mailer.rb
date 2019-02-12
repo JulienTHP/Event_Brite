@@ -1,14 +1,11 @@
 class UserMailer < ApplicationMailer
-	default from: 'no-reply@monsite.fr'
+  default from: 'no-reply@vive-rspec.fr'
+ 
+  def welcome_email(user)
+    @user = user 
+   
+    @url  = 'http://amortlestests.fr/login' 
 
-	def welcome_email(user)
-		@user = user
-
-
-		@url = 'http://monsite.fr/login'
-
-		mail(to: @user.email, subject: 'Bienvenue chez nous !')
-	end
+    mail(to: @user.email, subject: 'Bienvenue chez nous ! Faites des tests !') 
+  end
 end
-
-

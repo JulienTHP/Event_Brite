@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |_repo| 'https://github.com/JulienTHP.git' }
 
 ruby '2.5.1'
+gem 'devise'
 gem 'rubocop'
 gem 'bootstrap', '~> 4.2.1'
 gem 'faker'

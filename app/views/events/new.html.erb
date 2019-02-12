@@ -1,0 +1,54 @@
+<% provide(:title, 'Create an event') %>
+<% if @event.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Erreur!</h4>
+  <p>Nous n'avons pas réussi à créer l'event pour la (ou les) raison(s) suivante(s) :</p>  <ul>
+    <% @event.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <hr>
+  <p class="mb-0">Veuillez reesayer, suivre les consignes et rester patient.</p>
+</div>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br>
+      <%= form_for(@event) do |f| %>
+      <h1 class="h3 mb-3 font-weight-normal text-center">Create your own event</h1>
+
+      <div class="form-group">
+        <%= f.label :start_date, 'Date de debut' %><br />
+        <%= f.text_field :start_date, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :duration, 'Duree en minutes (multiple de 5)' %><br />
+        <%= f.text_field :duration, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, 'Titre' %><br />
+        <%= f.text_field :title, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price, 'Prix en euros' %><br />
+        <%= f.text_field :price, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :location, 'Lieu' %><br />
+        <%= f.text_field :location, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, 'Description' %><br />
+        <%= f.text_area :description, autofocus: true, size: '40x10', class: "form-control" %>
+      </div>
+
+
+      <div class="actions mt-5">
+        <%= f.submit "Creer", class: "btn btn-lg btn-primary btn-block" %>
+      </div>
+      <br><br>
+      <% end %>
+    </div>
+  </div>
+</div>

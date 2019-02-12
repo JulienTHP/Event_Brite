@@ -1,11 +1,10 @@
 class Attendance < ApplicationRecord
-	after_create :confirmation_send
+	after_create :new_attendant
 
-	belongs_to :user
-	belongs_to :event
+  belongs_to :user #participants as clasname user
+  belongs_to :event
 
-	def confirmation_send
-		AttendanceMailer.confirmation_email(@admin_id).deliver_now
-	end
+  def new_attendant
+    AttendenceMailer.new_attendant(self.event).deliver_now
+  end
 end
-
