@@ -30,19 +30,22 @@ class AttendancesController < ApplicationController
 
   @attendance = Attendance.new(user: current_user, event:@event)
   @attendance.stripe_customer_id = "l'évènement est gratuit"
-end
 
-if @attendance.save!
-	flash[:succes] = "Vous avez bien réserver une place pour cet évènement"
+  if @attendance.save!
+  	flash[:succes] = "Vous avez bien réserver une place pour cet évènement"
 
-else 
-	flash[:error] = "Erreur lors de la réservation"
-	p @attendance.errors
-	render :new
+  else 
+  	flash[:error] = "Erreur lors de la réservation"
+  	p @attendance.errors
+  	render :new
+  end
 
-rescue Stripe::CardError => e
+	rescue Stripe::CardError => e
 	flash[:error] = e.message
 	redirect_to new_charge_path
+
+	end
 end
 
-end
+
+
