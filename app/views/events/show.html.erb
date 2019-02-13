@@ -65,7 +65,7 @@
 					</div>
 					<% if current_user.email == @event.admin.email %>
 					<div>
-						<%= @event.attendances.each do |resa|%>
+						<% @event.attendances.each do |resa|%>
 						<p>
 							<%=resa.user.email%>
 						</p>
