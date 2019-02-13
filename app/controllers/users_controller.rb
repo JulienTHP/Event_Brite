@@ -20,6 +20,9 @@ class UsersController < ApplicationController
     end
 	end
 	
+  def user_is_
+
+
   def secret
   end
 end
