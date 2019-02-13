@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   devise_for :user, controllers: { registrations: "registrations" }
 
   resources :charges, only: [:new, :create]
-  resources :events
+  resources :events do 
+  	resources :attendances
+  end
   resources :user, except: [:new, :create, :destroy, :index]
-  root "events#index"
+  root "home#index"
 end
