@@ -1,19 +1,76 @@
-<%= form_tag charges_path do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-    <label class="amount">
-      <span><%= @event.price %> euros</span>
-    </label>
-  </article>
+<% provide(:title, 'Reservation') %>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Payer votre place pour l'évènement"
-          data-amount= "@event.price"
-          data-currency="eur"
-          data-locale="auto"></script>
-<% end %>
+
+<div class="container text-center">
+  <div class="col-sm-12">
+    <!-- -------------------------FIN PROFILE ------------------------------- -->
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2 class="h1 mb-3 font-weight-normal text-center">
+              <%= @event.title %>
+            </h2>
+            <p>
+              <%= @event.location %>, Lyon, France</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ---------------------------------------- FIN STATUS ----------------------- -->
+    <div class="row mr-auto">
+      <div class="well">
+        <div class="col-sm-4">
+          <h2 class="h4 mb-3 font-weight-normal text-center">
+            <%= @event.description %>
+          </h2><br>
+          <hr class="my-0">
+          <hr class="my-0"><br>
+          <p>Le
+            <%= @event.start_date%>
+          </p>
+          <hr class="my-0">
+          <hr class="my-0"><br>
+          <p>Tarif :
+            <%= @event.price %>€</p>
+          <hr class="my-0">
+          <hr class="my-0"><br>
+          <p>Organise par :
+            <%= @event.admin.first_name %><br>
+            <%= @event.admin.email %>
+          </p>
+        </div>
+        <br>
+
+        <% unless @usersattandances.include?(current_user) || @event.admin == current_user  %>
+        <div class="col-sm-12">
+          <h2 class="h4 mb-3 font-weight-normal text-center">Reservation pour 1 personne :</h2>
+          <%= form_tag event_attendances_path do %>
+          <article>
+            <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p>
+                <%= flash[:error] %>
+              </p>
+            </div>
+            <% end %>
+            <label class="amount">
+              <span>Amount:
+                <%= @amount/100 %>$</span>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Event entry" data-amount="<%= @amount %>" data-locale="auto"></script>
+          <% end %><br>
+          <%= link_to "Back", :back %><br><br><br>
+        </div>
+        <% else %>
+        <p>Evenement deja reserve!</p>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

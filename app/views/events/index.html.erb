@@ -69,7 +69,7 @@
 		<p>Mes reservations :</p>
 
 		<% if user_signed_in? && !current_user.attendances.blank? %>
-		<% cur	rent_user.attendances.each do |resa| %>
+		<% current_user.attendances.each do |resa| %>
 		<%= link_to event_path(resa.event.id) do %>
 		<div class="well card-link">
 			<p>
