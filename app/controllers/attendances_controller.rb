@@ -17,22 +17,32 @@ class AttendancesController < ApplicationController
   @amount = @event.price * 100
 
   customer = Stripe::Customer.create(
-    :email => params[:stripeEmail],
-    :source  => params[:stripeToken]
-  )
+  	:email => params[:stripeEmail],
+  	:source  => params[:stripeToken]
+  	)
 
   charge = Stripe::Charge.create(
-    :customer    => customer.id,
-    :amount      => @amount,
-    :description => 'Rails Stripe customer',
-    :currency    => 'usd'
-  )
+  	:customer    => customer.id,
+  	:amount      => @amount,
+  	:description => 'Rails Stripe customer',
+  	:currency    => 'usd'
+  	)
 
   @attendance = Attendance.new(user: current_user, event:@event)
+  @attendance.stripe_customer_id = "l'évènement est gratuit"
+end
+
+if @attendance.save!
+	flash[:succes] = "Vous avez bien réserver une place pour cet évènement"
+
+else 
+	flash[:error] = "Erreur lors de la réservation"
+	p @attendance.errors
+	render :new
 
 rescue Stripe::CardError => e
-  flash[:error] = e.message
-  redirect_to new_charge_path
+	flash[:error] = e.message
+	redirect_to new_charge_path
 end
 
 end
