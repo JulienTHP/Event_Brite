@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'users/edit'
+  get 'users/secret'
+  get 'users/show'
   get 'home/index'
   get 'home/secret'
   get 'users/secret'
@@ -10,5 +13,5 @@ Rails.application.routes.draw do
   	resources :attendances
   end
   resources :user, except: [:new, :create, :destroy, :index]
-  root "home#index"
+  root "events#index"
 end

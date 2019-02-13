@@ -8,6 +8,14 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <% if user_signed_in? %>
+        <%= link_to 'Home', root_path, class:'nav-link' %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Events', root_path, class:'nav-link' %>
+      </li>
       <li class="nav-item">
         <% if user_signed_in? %>
         <%= link_to 'Create an event', new_event_path, class:'nav-link' %>
@@ -24,7 +32,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <% if user_signed_in? %>
-        <%= link_to "Mon profile", user_session_path %>
+        <%= link_to "Mon profile", user_path(current_user.id)%>
         <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
         <% else %>
         <a class="dropdown-item" href="<%= new_user_session_path %>">Connection</a>
