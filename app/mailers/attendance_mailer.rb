@@ -1,7 +1,7 @@
 class AttendanceMailer < ApplicationMailer
   default from: 'no-reply@vive-rspec.fr'
  
-  def new_attendance(event)
+  def new_attendant(event)
     @event = event 
     @url  = 'http://amortlestests.fr/login' 
 

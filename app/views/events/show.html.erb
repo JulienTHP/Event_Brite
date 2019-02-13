@@ -40,9 +40,12 @@
 							<ul>
 								<% if user_signed_in? %>
 								<div><%= link_to "Reserver", new_charge_path, class:"btn btn-primary btn-lg" %></p></div>
-							</div>	
-						<%end%>
-						</ul>						
+							</div>
+							<% else %>
+							<div><%= link_to "Vous devez être inscrits pour réserver", home_index_path, class:"btn btn-primary btn-lg" %></p>
+							<%end%>
+						</ul>
+						</div>						
 						<hr class="my-0">
 						<hr class="my-0"><br>
 						<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a finibus nunc, at dictum dolor. Integer iaculis sapien nulla, ac eleifend leo faucibus et. Maecenas dapibus est sed justo iaculis, quis placerat nunc ultricies. Donec sollicitudin nulla sit amet leo mollis, aliquet condimentum diam auctor. Proin sed felis tempus, mollis erat a, iaculis nisl. Mauris quis rutrum urna. Sed interdum lorem at diam sodales faucibus. Donec sapien nisi, ultrices ac est sit amet, pharetra cursus nibh. Etiam in cursus nisi. Nulla eu eros nec ante aliquet sagittis. Donec bibendum, neque rutrum sollicitudin ultricies, arcu velit condimentum augue, eu vestibulum leo sapien eleifend enim. Cras nec suscipit dolor. Etiam lobortis blandit tortor ac condimentum. Proin scelerisque, tellus vel fermentum vehicula, nibh dui sollicitudin ipsum, in ultricies sapien mauris a purus. Phasellus consectetur congue massa, nec tincidunt odio mattis quis.
