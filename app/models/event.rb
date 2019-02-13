@@ -23,13 +23,13 @@ class Event < ApplicationRecord
 			validates :location, presence: true
 
 			def in_future
-				errors.add(:start_date, "Event must be in the futur") 
 				unless self.start_date.present? && self.start_date > Date.today
+				errors.add(:start_date, "Event must be in the futur") 
 				end
 
 				def duration_is_a_multiple_of_5
-					errors.add(:duration, "should be a mutiple of 5!") 
 					unless self.duration.present? && self.duration.multiple_of?(5)
+					errors.add(:duration, "should be a mutiple of 5!") 
 					end
 				end
 			end				

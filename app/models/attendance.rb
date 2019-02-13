@@ -5,6 +5,6 @@ class Attendance < ApplicationRecord
   belongs_to :event
 
   def new_attendant
-    AttendenceMailer.new_attendant(self.event).deliver_now
+    AttendanceMailer.new_attendant(self.event).deliver_now
   end
 end

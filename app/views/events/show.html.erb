@@ -20,7 +20,7 @@
       <div class="row mr-auto">
 	          <div class="well">
 	          	<div class="col-sm-8">
-					<%= image_tag("bird.jpg", alt: "Avatar") %>
+					<%= image_tag("concert.jpg", alt: "Avatar", size: "100*100", class: "img-circle") %>
 				</div>
 				<div class="col-sm-4">
 			            <h2 class="h4 mb-3 font-weight-normal text-center"><%= @event.description %></h2><br>
@@ -39,7 +39,7 @@
 				    <hr class="my-0">
 				    <hr class="my-0"><br>
 				    	<div class='d-flex justify-content-between align-items-center'>
-				    		<div><h2 class="h4 mb-3 font-weight-normal text-center"><%= @event.attandances.size %> INSCRITS !</h2></div>
+				    		<div><h2 class="h4 mb-3 font-weight-normal text-center"><%= @event.attendances.size %> INSCRITS !</h2></div>
 					   		<div><%= link_to "Reserver", event_path(@event.id), class:"btn btn-primary btn-lg" %></p></div>
 					   	</div>
 					<hr class="my-0">
