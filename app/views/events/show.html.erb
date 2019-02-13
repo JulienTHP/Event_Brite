@@ -39,7 +39,7 @@
 							<div><h2 class="h4 mb-3 font-weight-normal text-center"><%= @event.attendances.size %> INSCRITS !</h2></div>
 							<ul>
 								<% if user_signed_in? %>
-								<div><%= link_to "Reserver", new_charge_path, class:"btn btn-primary btn-lg" %></p></div>
+								<div><%= link_to "Reserver", new_charge_path(@event.id), class:"btn btn-primary btn-lg" %></p></div>
 							</div>
 							<% else %>
 							<div><%= link_to "Vous devez être inscrits pour réserver", home_index_path, class:"btn btn-primary btn-lg" %></p>

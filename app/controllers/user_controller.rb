@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UserController < ApplicationController
 	before_action :authenticate_user!, only: [:secret, :show]
 
   def show
@@ -18,9 +18,9 @@ class UsersController < ApplicationController
     else
       render :edit
     end
-	end
-	
-  def user_is_
+  end
+
+
 
 
   def secret
