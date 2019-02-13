@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :charges, only: [:new, :create]
   resources :events
   resources :user, except: [:new, :create, :destroy, :index]
-  root "home#index"
+  root "events#index"
 end

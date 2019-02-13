@@ -1,71 +1,95 @@
 <% provide(:title, 'Les events') %>
-
+<% if user_signed_in? %>
 <!-- -------------------------PROFILE GAUCHE------------------------------- -->
-  
-<div class="container text-center">    
 
-    <div class="col-sm-10">
-<!-- -------------------------FIN PROFILE ------------------------------- -->
-    
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <h2 class="h1 mb-3 font-weight-normal text-center">Evènements à Lyon !</h2>  
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- ---------------------------------------- FIN STATUS ----------------------- -->
-      <div class="row">
-<!-- ---------------------------------------- AVATAR + NOM ----------------------- -->
-		<% @event.all.each do |event|  %>
-	        <div class="col-sm-3">
-	          <div class="well">
-	           <p>In <%= event.location %></p>
-	           <%= image_tag("concert.jpg", size: "100x100", alt: "Concert", class: "img-circle") %>
-	           <footer class="blockquote-footer"><%= event.start_date.to_s[0..-13] %><cite title="Source Title">- <%= event.duration %> minutes</cite></footer>
-	          </div>
-	        </div>
-<!-- ------------------------------- FIN AVATAR DEBUT DESCRIPTION ----------------------- -->
-	        <div class="col-sm-9">
-	          <div class="well">
-	            <h2 class="h4 mb-3 font-weight-normal text-center"><%= event.title %></h2><br>
-	            <div class="dropdown-divider"></div>
-	            <hr class="my-0">
-	            <p><%= event.description %></p><br>
-	           	<%= link_to "Plus d'infos", event_path(event.id), class:"btn btn-primary" %>
-	           	<div class="dropdown-divider"></div>
-	            <hr class="my-0">
-	          </div>
-	        </div>
-		<% end %>
-      </div>
-    </div>
-<!-- ---------------------------------------- FIN DESCRIPTION ----------------------- -->
+<div class="container text-center">
+
+	<div class="col-sm-10">
+		<!-- -------------------------FIN PROFILE ------------------------------- -->
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2 class="h1 mb-3 font-weight-normal text-center">Evènements à Lyon !</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ---------------------------------------- FIN STATUS ----------------------- -->
+		<div class="row">
+			<!-- ---------------------------------------- AVATAR + NOM ----------------------- -->
+			<% @event.all.each do |event|  %>
+			<div class="col-sm-3">
+				<div class="well">
+					<p>In
+						<%= event.location %>
+					</p>
+					<%= image_tag("concert.jpg", size: "100x100", alt: "Concert", class: "img-circle") %>
+					<footer class="blockquote-footer">
+						<%= event.start_date.to_s[0..-13] %><cite title="Source Title">-
+							<%= event.duration %> minutes</cite></footer>
+				</div>
+			</div>
+			<!-- ------------------------------- FIN AVATAR DEBUT DESCRIPTION ----------------------- -->
+			<div class="col-sm-9">
+				<div class="well">
+					<h2 class="h4 mb-3 font-weight-normal text-center">
+						<%= event.title %>
+					</h2><br>
+					<div class="dropdown-divider"></div>
+					<hr class="my-0">
+					<p>
+						<%= event.description %>
+					</p><br>
+					<%= link_to "Plus d'infos", event_path(event.id), class:"btn btn-primary" %>
+					<div class="dropdown-divider"></div>
+					<hr class="my-0">
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+	<!-- ---------------------------------------- FIN DESCRIPTION ----------------------- -->
 
 
-<!-- --------------------------- EVENT ------------------------------------ -->
+	<!-- --------------------------- EVENT ------------------------------------ -->
 	<div class="col-sm-2 well">
-	      <div class="img-thumbnail">
-	        <p>Upcoming Events:</p>
-	        <%= image_tag("img.png", size: "400x300", alt: "Lyon", class: "img-circle") %>
-	        <p><strong><%= @event.last.location %></strong></p>
-	        <p><%= @event.last.start_date.to_s[0..-13] %></p>
-	        <%= link_to "Infos", event_path(@event.last.id), class:"btn btn-primary" %>
-	      </div>      
+		<div class="img-thumbnail">
+			<p>Upcoming Events:</p>
+			<%= image_tag("img.png", size: "400x300", alt: "Lyon", class: "img-circle") %>
+			<p><strong>
+					<%= @event.last.location %></strong></p>
+			<p>
+				<%= @event.last.start_date.to_s[0..-13] %>
+			</p>
+			<%= link_to "Infos", event_path(@event.last.id), class:"btn btn-primary" %>
+		</div>
 
-	        			<p>Mes reservations :</p>
+		<p>Mes reservations :</p>
 
-	      	<% if user_signed_in? && !current_user.attendances.blank? %>
-	      		<% cur	rent_user.attendances.each do |resa| %>
-	      			<%= link_to event_path(resa.event.id) do %>
-	      				<div class="well card-link">
-	        				<p><%= resa.event.title %></p>
-	      				</div>
-	      			<% end %>
-	      		<% end %>
-	      	<% end %>
+		<% if user_signed_in? && !current_user.attendances.blank? %>
+		<% cur	rent_user.attendances.each do |resa| %>
+		<%= link_to event_path(resa.event.id) do %>
+		<div class="well card-link">
+			<p>
+				<%= resa.event.title %>
+			</p>
+		</div>
+		<% end %>
+		<% end %>
+		<% end %>
 	</div>
 
 </div>
+<% else user_signed_in? %>
+
+<div class="jumbotron">
+	<h1 class="display-4">Vous n'etes pas connecte</h1>
+	<p class="lead">Pour avoir acces a ces evenements, vous devez vous connecter</p>
+	<p class="lead">
+		<a class="btn btn-primary btn-lg" <%=link_to "S'inscrire" , new_user_registration_path %></a>
+		<a class="btn btn-primary btn-lg" <%=link_to "Se connecter" , new_user_session_path %></a>
+	</p>
+</div>
+<% end%>
