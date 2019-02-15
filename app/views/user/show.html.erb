@@ -29,6 +29,9 @@
           <% end %>
           <hr class="my-0">
           <hr class="my-0"><br>
+          <%if current_user.is_admin == true%>
+          <%= link_to "Acceder au panneau admin", admin_root_path, class:"btn btn-primary btn-md" %>
+          <%end%>
           <p>
             <%= current_user.email %>
           </p>

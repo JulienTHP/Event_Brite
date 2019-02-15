@@ -3,10 +3,12 @@
 <% if @user.errors.any? %>
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">Erreur!</h4>
-  <p>Nous n'avons pas réussi à créer l'event pour la (ou les) raison(s) suivante(s) :</p>  
+  <p>Nous n'avons pas réussi à créer l'event pour la (ou les) raison(s) suivante(s) :</p>
   <ul>
     <% @event.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+    <li>
+      <%= message %>
+    </li>
     <% end %>
   </ul>
   <hr>
@@ -36,6 +38,12 @@
 
       <div class="actions mt-5">
         <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block" %>
+      </div>
+      <div class="form-group">
+
+        <%= f.label "vousvoulez etre un admin ? " %>
+        <%= f.check_box :is_admin, {}, true, false%>
+
       </div>
       <br><br>
       <% end %>
