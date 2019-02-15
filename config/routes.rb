@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :events do 
   	resources :attendances
   end
-  resources :user, except: [:new, :create, :destroy, :index]
+  resources :user, except: [:new, :create, :destroy, :index] do
+    resources :avatars, only: [:create]
+  end
   root "events#index"
 end

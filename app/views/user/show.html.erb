@@ -8,9 +8,19 @@
     <div class="row mr-auto">
       <div class="well">
         <div class="col-sm-6">
-          <h2 class="h3 mb-3 font-weight-normal text-center">Mon profile</h2><br>
+          <h2 class="h3 mb-3 font-weight-normal text-center">Mon profil</h2><br>
           <hr class="my-0">
           <hr class="my-0"><br>
+          <h3>Photo de profil</h3>
+          <%if current_user.avatar.attached?%>
+            <%= image_tag current_user.avatar, alt:'photo de profil'%>
+            <%else%>
+            <p>Vous n'avez pas encore défini de photo de profil.</p>
+            <% end %>
+            <%= form_tag user_avatars_path(current_user), multipart: true do %>
+              <%=file_field_tag :avatar%>
+              <%= submit_tag "Ajouter une photo de profil"%><br><br>
+          <% end %>
           <p>Nom complet :
             <%= current_user.first_name %>
             <% unless current_user.last_name.blank? %>

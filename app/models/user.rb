@@ -6,6 +6,7 @@ class User < ApplicationRecord
          
 	after_create :welcome_send
 
+  has_one_attached :avatar
 	has_many :attendances, dependent: :destroy
 	has_many :events, through: :attendances
 	has_many :events, foreign_key: 'admin_id', dependent: :destroy
