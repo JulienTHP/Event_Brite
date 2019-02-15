@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'users/edit'
-  get 'users/secret'
-  get 'users/show'
-  get 'home/index'
-  get 'home/secret'
-  get 'users/secret'
+  namespace :admin do
+      resources :users
+      resources :attendances
+      resources :events
+
+      root to: "users#index"
+    end
   devise_for :user, controllers: { registrations: "registrations" }
 
   resources :charges, only: [:new, :create]
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
   	resources :attendances
   end
   resources :user, except: [:new, :create, :destroy, :index]
-  root "events#index"
+  root to: "events#index"
 end
