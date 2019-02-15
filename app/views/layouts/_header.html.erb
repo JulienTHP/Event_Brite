@@ -21,7 +21,11 @@
     <div class="dropdown navbar-right">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        <span class="glyphicon glyphicon-user"></span> My Account
+        <span class="glyphicon glyphicon-user"></span>
+        <% if user_signed_in? %>
+        <%= current_user.email%>
+        <% else %> Connexion
+        <%end%>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <% if user_signed_in? %>
