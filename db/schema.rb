@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_123943) do
     t.integer "price"
     t.string "location"
     t.bigint "admin_id"
+    t.boolean "validated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_events_on_admin_id"

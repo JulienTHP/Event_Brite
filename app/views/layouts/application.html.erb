@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-     <%= render 'layouts/head' %>
-    <title><%= full_title(yield(:title)) %></title>
-    <%= favicon_link_tag %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <%= render 'layouts/head' %>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= favicon_link_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="lib/assets/stylesheet/bootstrap.css" media="screen">
+</head>
+
+<body>
 
   <%= render 'layouts/header' %>
   <%= render 'layouts/flashes' %>
-  
-  
-  <div class="container">
-    <%= yield %>
-    <%= render 'layouts/footer' %>
-  </div>
-  
 
-    <%= render 'layouts/javascript' %>
-  </body>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+
+
+
+  <%= render 'layouts/javascript' %>
+</body>
+
 </html>

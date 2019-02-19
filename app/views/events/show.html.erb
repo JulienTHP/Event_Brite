@@ -1,5 +1,9 @@
 <% provide(:title, 'Show event') %>
-
+<section class="hero1">
+	<div class="hero-inner">
+		<h2><%= @event.title %></h2>
+	</div>
+</section>
 
 <div class="container text-center">
 	<div class="col-sm-12">
@@ -8,9 +12,7 @@
 			<div class="col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<h2 class="h1 mb-3 font-weight-normal text-center">
-							<%= @event.title %>
-						</h2>
+
 						<p>
 							<%= @event.location %>, Lyon, France</p>
 					</div>
@@ -63,43 +65,27 @@
 						<%end%>
 						</ul>
 					</div>
-					<% if current_user.email == @event.admin.email %>
-					<div>
-						<% @event.attendances.each do |resa|%>
-						<p>
-							<%=resa.user.email%>
-						</p>
-						<%end%>
+
+					<div class="card" style="width: 18rem;">
+						<div class="card-header">
+							<h3>Participants</h3>
+						</div>
+						<ul class="list-group list-group-flush">
+							<% @event.attendances.each do |resa|%>
+							<p>
+								<li class="list-group-item"><%=resa.user.first_name%> <%=resa.user.last_name%></li>
+							</p>
+							<%end%>
+						</ul>
 					</div>
-					<%else%>
-					<%end%>
+					<div>
+
+					</div>
+
 					<hr class="my-0">
 					<hr class="my-0"><br>
-					<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a finibus nunc, at dictum dolor. Integer
-						iaculis sapien nulla, ac eleifend leo faucibus et. Maecenas dapibus est sed justo iaculis, quis placerat nunc
-						ultricies. Donec sollicitudin nulla sit amet leo mollis, aliquet condimentum diam auctor. Proin sed felis
-						tempus,
-						mollis erat a, iaculis nisl. Mauris quis rutrum urna. Sed interdum lorem at diam sodales faucibus. Donec sapien
-						nisi, ultrices ac est sit amet, pharetra cursus nibh. Etiam in cursus nisi. Nulla eu eros nec ante aliquet
-						sagittis. Donec bibendum, neque rutrum sollicitudin ultricies, arcu velit condimentum augue, eu vestibulum leo
-						sapien eleifend enim. Cras nec suscipit dolor. Etiam lobortis blandit tortor ac condimentum. Proin scelerisque,
-						tellus vel fermentum vehicula, nibh dui sollicitudin ipsum, in ultricies sapien mauris a purus. Phasellus
-						consectetur congue massa, nec tincidunt odio mattis quis.
-
-						Nullam semper ligula eu arcu vulputate, eu rutrum justo ultrices. Donec ac metus vel est fermentum faucibus sit
-						amet vel metus. Aenean quis lectus ac nunc efficitur viverra vitae laoreet lacus. Sed nec lectus id tellus
-						varius
-						eleifend sed non tortor. Maecenas a lorem non augue sagittis blandit. Fusce vulputate magna nisi, vel malesuada
-						orci commodo at. Vestibulum elementum ex vitae maximus vestibulum. Curabitur placerat ac nisl at vehicula.
-						Suspendisse potenti. Mauris vestibulum lacus dolor, sit amet dapibus justo pellentesque sit amet. Sed bibendum
-						urna sed quam sagittis placerat. Quisque mi orci, molestie eu massa consectetur, vulputate accumsan tortor.
-						Donec
-						nec ligula massa. Nulla non porta eros. </p>
-
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ---------------------------------------- FIN DESCRIPTION ----------------------- -->
-	<!-- --------------------------- EVENT ------------------------------------ -->
 </div>
