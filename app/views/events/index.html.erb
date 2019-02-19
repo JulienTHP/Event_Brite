@@ -22,66 +22,21 @@
 	<!-- ---------------------------------------- FIN STATUS ----------------------- -->
 	<div class="row">
 		<!-- ---------------------------------------- AVATAR + NOM ----------------------- -->
+
+		<div class="container"></div>
 		<% @event.all.each do |event|  %>
-		<div class="col-sm-3">
-			<div class="well">
-				<p>In
-					<%= event.location %>
-				</p>
-				<%= image_tag("concert.jpg", size: "100x100", alt: "Concert", class: "img-circle") %>
-				<footer class="blockquote-footer">
-					<%= event.start_date.to_s[0..-13] %><cite title="Source Title">-
-						<%= event.duration %> minutes</cite></footer>
-			</div>
-		</div>
-		<!-- ------------------------------- FIN AVATAR DEBUT DESCRIPTION ----------------------- -->
-		<div class="col-sm-9">
-			<div class="well">
-				<h2 class="h4 mb-3 font-weight-normal text-center">
-					<%= event.title %>
-				</h2><br>
-				<div class="dropdown-divider"></div>
-				<hr class="my-0">
-				<p>
-					<%= event.description %>
-				</p><br>
-				<%= link_to "Plus d'infos", event_path(event.id), class:"btn btn-primary" %>
-				<div class="dropdown-divider"></div><br><br>
-				<hr class="my-3">
+		<div class="card-deck space-between">
+			<div class="card " style="width: 14rem;">
+				<img class="card-img" src="https://i.ytimg.com/vi/_-cLyDuU7JM/hqdefault.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title"><%=event.title%></h5>
+					<div class="card-footer bg-transparent border-success"> Footer
+					</div>
+				</div>
 			</div>
 		</div>
 		<% end %>
 	</div>
-</div>
-<!-- ---------------------------------------- FIN DESCRIPTION ----------------------- -->
-
-
-<!-- --------------------------- EVENT ------------------------------------ -->
-<div class="col-sm-2 well">
-	<div class="img-thumbnail">
-		<p>Upcoming Events:</p>
-		<%= image_tag("img.png", size: "400x300", alt: "Lyon", class: "img-circle") %>
-		<p><strong>
-				<%= @event.last.location %></strong></p>
-		<p>
-			<%= @event.last.start_date.to_s[0..-13] %>
-		</p>
-		<%= link_to "Infos", event_path(@event.last.id), class:"btn btn-primary" %>
-	</div>
-
-	<p>Mes reservations :</p>
-
-	<% if user_signed_in? && !current_user.attendances.blank? %>
-	<% current_user.attendances.each do |resa| %>
-	<%= link_to event_path(resa.event.id) do %>
-	<div class="well card-link">
-		<p>
-			<%= resa.event.title %>
-		</p>
-	</div>
-	<% end %>
-	<% end %>
-	<% end %>
 </div>
 </div>
 </div>
